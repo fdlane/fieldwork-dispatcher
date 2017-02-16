@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'kubtest',
+    modulePrefix: 'fieldwork-dispatcher',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
