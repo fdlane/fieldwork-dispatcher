@@ -1,7 +1,7 @@
 {
-  "name": "kubtest",
+  "name": "fieldwork-dispatcher",
   "version": "0.0.0",
-  "description": "Small description for kubtest goes here",
+  "description": "Small description for fieldwork-dispatcher goes here",
   "license": "MIT",
   "author": "",
   "directories": {
@@ -37,11 +37,15 @@
     "ember-resolver": "^2.0.3",
     "ember-source": "^2.11.0",
     "ember-welcome-page": "^2.0.2",
-    "loader.js": "^4.0.10",
-    "semantic-ui-ember": "2.0.1"
+    "emberfire": "2.0.6",
+    "loader.js": "^4.0.10"
   },
   "engines": {
     "node": ">= 0.12.0"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "emberfire": "2.0.6",
+    "torii": "0.8.1"
+  }
 }

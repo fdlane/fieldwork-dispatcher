@@ -1,6 +1,5 @@
 {
-  "name": "kubtest",
+  "name": "fieldwork-dispatcher",
   "dependencies": {
-    "semantic-ui": "^2.2.7"
   }
 }
