@@ -15,6 +15,7 @@
     "test": "ember test"
   },
   "devDependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^2.4.1",
     "ember-cli": "2.11.0",
@@ -45,6 +46,7 @@
   },
   "private": true,
   "dependencies": {
+    "ember-bootstrap": "1.0.0-alpha.5",
     "emberfire": "2.0.6",
     "torii": "0.8.1"
   }
