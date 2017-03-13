@@ -23,9 +23,6 @@ over-ride "Weak" message, show font in dark grey
 	  padding: 10px;
 		@include box-sizing(border-box);
 
-		&:focus {
-		  z-index: 2;
-		}
 	}
 
 body {
