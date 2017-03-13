@@ -1,1 +1,16 @@
-{{hello-world}}
+
+Jobs: 
+<br>
+{{#each model.jobs as |job|}}
+{{job.metaId}}
+<br>
+{{/each}}
+
+
+
+Workers:
+<br>
+{{#each model.workers as |worker|}}
+{{worker.Username}}
+<br>
+{{/each}}
