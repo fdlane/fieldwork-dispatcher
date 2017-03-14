@@ -1,27 +1,50 @@
-<br>
-<br>
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-Username:
-{{currentUser.username}}
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<br>
-<br>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-Jobs:
-<br>
-{{#each model.jobs as |job|}}
-{{job.metaId}}
-<br>
-{{/each}}
+    <!-- Awesome fonts-->
+    <script src="https://use.fontawesome.com/b03c52441a.js"></script>
 
+</head>
 
-<br>
-<br>
+<body>
 
+    {{nav-bar logout="logout"}}
 
-Workers:
-<br>
-{{#each model.workers as |worker|}}
-{{worker.username}}
-<br>
-{{/each}}
+    <div class="container-fluid">
+        <div class="row">
+            {{search-box}}
+        </div>
+
+        <div class="row">
+            {{#workers-table}}
+              {{#each model.workers as |worker|}}
+              <tr>
+                  <td>{{worker.username}}</td>
+                  <td>{{worker.isAvailable}}</td>
+                  <td>{{worker.jobCount}}</td>
+
+              </tr>
+              {{/each}}
+            {{/workers-table}}
+
+            {{#jobs-table}}
+              {{#each model.jobs as |job|}}
+                <tr>
+                    <td>{{job.assignedTo}}</td>
+                    <td>{{job.location}}</td>
+                    <td>{{job.editedDate}}</td>
+                    <td>{{job.createdBy}}</td>
+                </tr>
+              {{/each}}
+            {{/jobs-table}}
+        </div>
+    </div>
+
+</body>
