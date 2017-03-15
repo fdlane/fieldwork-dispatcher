@@ -12,7 +12,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test"
+    "test": "ember test",
+    "postinstall": "bower install"
   },
   "devDependencies": {
     "bootstrap": "^4.0.0-alpha.6",
