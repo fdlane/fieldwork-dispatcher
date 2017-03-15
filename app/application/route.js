@@ -17,18 +17,6 @@ export default Ember.Route.extend({
       }
     });
 
-  },
-
-
-  actions: {
-
-    logout() {
-
-      this.get('session').close().then(() => {
-        this.transitionTo('login');
-      });
-
-    }
   }
 
 });
