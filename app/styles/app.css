@@ -37,6 +37,10 @@ body {
 	margin-top: 60px;
 }
 
+.password-reset-form {
+    margin-top: 60px;
+}
+
 form[role=login] {
 	color: #5d5d5d;
 	background: #f2f2f2;
@@ -65,7 +69,7 @@ form[role=login] {
 	margin-bottom: 50px;
 }
 	.form-links a {
-		color: #fff;
+		color: primary;
 	}
 
   .panel-table .panel-body{
