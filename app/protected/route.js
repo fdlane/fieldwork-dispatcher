@@ -30,21 +30,35 @@ export default Ember.Route.extend({
           this.controllerFor('application').set('selectedWorker', username);
         },
 
-        selectJob(job) {
-          this.controllerFor('application').set('job', job);
+        selectJob(job, selected) {
+
+          let jobs = this.controllerFor('application').get('jobs');
+
+          if(selected) {
+            jobs.pushObject(job);
+          }
+          else {
+            jobs.removeObject(job);
+          }
+
         },
 
         assignJob() {
 
           let selectedWorker = this.controllerFor('application').get('selectedWorker');
-          let job = this.controllerFor('application').get('job');
-          this.store.findRecord('job', job.get('id')).then(function(job) {
+          let jobs = this.controllerFor('application').get('jobs');
+          let store = this.store;
 
-            job.set('assignedTo', selectedWorker);
+          jobs.forEach(function(job) {
+            store.findRecord('job', job.get('id')).then(function(job) {
 
-            job.save();
+              job.set('assignedTo', selectedWorker);
 
+              job.save();
+
+            });
           });
+
 
 
         }
