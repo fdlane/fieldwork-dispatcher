@@ -28,6 +28,7 @@ export default Ember.Route.extend({
 
         selectWorker(username) {
           this.controllerFor('application').set('selectedWorker', username);
+          this.controller.set('disableAssign', false);
         },
 
         selectJob(job, selected, row) {
