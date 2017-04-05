@@ -68,6 +68,27 @@ export default Ember.Route.extend({
 
         },
 
+        unassignJob() {
+
+          const applicationController = this.controllerFor('application');
+          let jobs = this.controllerFor('application').get('jobs');
+          let store = this.store;
+
+          jobs.forEach(function(job) {
+            store.findRecord('job', job.get('id')).then(function(job) {
+
+              job.set('assignedTo', 'UNASSIGNED');
+
+              job.save();
+
+            });
+          });
+
+          applicationController.set('jobs', []);
+          this.send('deselectRows');
+
+        },
+
         deselectRows() {
           this.controllerFor('application').selectedRows.forEach(function(row) {
             row.removeClass('bg-info');

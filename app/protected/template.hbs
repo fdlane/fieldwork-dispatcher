@@ -12,7 +12,7 @@
 			{{/each}}
 		{{/workers-table}}
 
-		{{#jobs-table action="assignJob"}}
+		{{#jobs-table assign="assignJob" unassign="unassignJob"}}
 			{{#each model.jobs as |job|}}
 				{{job-row job=job action="selectJob"}}
 			{{/each}} {{/jobs-table}}
