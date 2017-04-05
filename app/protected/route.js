@@ -50,14 +50,15 @@ export default Ember.Route.extend({
         assignJob() {
 
           const applicationController = this.controllerFor('application');
-          let selectedWorker = this.controllerFor('application').get('selectedWorker');
-          let jobs = this.controllerFor('application').get('jobs');
+          let selectedWorker = applicationController.get('selectedWorker');
+          let jobs = applicationController.get('jobs');
           let store = this.store;
 
           jobs.forEach(function(job) {
             store.findRecord('job', job.get('id')).then(function(job) {
 
               job.set('assignedTo', selectedWorker);
+              job.set('status', 'Acknowledged');
 
               job.save();
 
@@ -72,13 +73,35 @@ export default Ember.Route.extend({
         unassignJob() {
 
           const applicationController = this.controllerFor('application');
-          let jobs = this.controllerFor('application').get('jobs');
+          let jobs = applicationController.get('jobs');
           let store = this.store;
 
           jobs.forEach(function(job) {
             store.findRecord('job', job.get('id')).then(function(job) {
 
               job.set('assignedTo', 'UNASSIGNED');
+              job.set('status', 'Pending');
+
+              job.save();
+
+            });
+          });
+
+          applicationController.set('jobs', []);
+          this.send('deselectRows');
+
+        },
+
+        cancelJob() {
+
+          const applicationController = this.controllerFor('application');
+          let jobs = applicationController.get('jobs');
+          let store = this.store;
+
+          jobs.forEach(function(job) {
+            store.findRecord('job', job.get('id')).then(function(job) {
+
+              job.set('isActive', false);
 
               job.save();
 

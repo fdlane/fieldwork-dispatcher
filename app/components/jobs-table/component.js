@@ -11,6 +11,10 @@ export default Ember.Component.extend({
 
     unassign() {
       this.sendAction('unassign');
+    },
+
+    cancel() {
+      this.sendAction('cancel');
     }
   }
 });
