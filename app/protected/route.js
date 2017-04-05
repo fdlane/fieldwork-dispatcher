@@ -24,6 +24,54 @@ export default Ember.Route.extend({
                 this.transitionTo('login');
             });
 
+        },
+
+        selectWorker(username) {
+          this.controllerFor('application').set('selectedWorker', username);
+        },
+
+        selectJob(job, selected, row) {
+
+          let jobs = this.controllerFor('application').get('jobs');
+          let selectedRows = this.controllerFor('application').get('selectedRows');
+
+          if(selected) {
+            jobs.pushObject(job);
+            selectedRows.pushObject(row);
+          }
+          else {
+            jobs.removeObject(job);
+            selectedRows.removeObject(row);
+          }
+
+        },
+
+        assignJob() {
+
+          const applicationController = this.controllerFor('application');
+          let selectedWorker = this.controllerFor('application').get('selectedWorker');
+          let jobs = this.controllerFor('application').get('jobs');
+          let store = this.store;
+
+          jobs.forEach(function(job) {
+            store.findRecord('job', job.get('id')).then(function(job) {
+
+              job.set('assignedTo', selectedWorker);
+
+              job.save();
+
+            });
+          });
+
+          applicationController.set('jobs', []);
+          this.send('deselectRows');
+
+        },
+
+        deselectRows() {
+          this.controllerFor('application').selectedRows.forEach(function(row) {
+            row.removeClass('bg-info');
+          });
         }
     }
 

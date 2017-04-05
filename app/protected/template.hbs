@@ -6,20 +6,15 @@
 	</div>
 
 	<div class="row">
-		{{#workers-table}} {{#each model.workers as |worker|}}
-		<tr>
-			<td>{{worker.username}}</td>
-			<td>{{worker.isAvailable}}</td>
-			<td>{{worker.jobCount}}</td>
+		{{#workers-table}}
+			{{#each model.workers as |worker|}}
+				{{worker-row worker=worker action="selectWorker"}}
+			{{/each}}
+		{{/workers-table}}
 
-		</tr>
-		{{/each}} {{/workers-table}} {{#jobs-table}} {{#each model.jobs as |job|}}
-		<tr>
-			<td>{{job.assignedTo}}</td>
-			<td>{{job.location}}</td>
-			<td>{{job.editedDate}}</td>
-			<td>{{job.createdBy}}</td>
-		</tr>
-		{{/each}} {{/jobs-table}}
+		{{#jobs-table action="assignJob"}}
+			{{#each model.jobs as |job|}}
+				{{job-row job=job action="selectJob"}}
+			{{/each}} {{/jobs-table}}
 	</div>
 </div>
