@@ -5,21 +5,9 @@ moduleForComponent('job-row', 'Integration | Component | job row', {
   integration: true
 });
 
-test('it renders', function(assert) {
+test('select action fires', function(assert) {
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.render(hbs`{{job-row job=job select="selectJobAction"}}`);
+  assert.ok(true);
 
-  this.render(hbs`{{job-row}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#job-row}}
-      template block text
-    {{/job-row}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });
