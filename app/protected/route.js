@@ -31,8 +31,8 @@ export default Ember.Route.extend({
           this.controller.set('disableAssign', false);
         },
 
-        selectJob(job, selected, row) {
-
+        selectJob() {
+          /*debugger
           let jobs = this.controllerFor('application').get('jobs');
           let selectedRows = this.controllerFor('application').get('selectedRows');
 
@@ -43,8 +43,11 @@ export default Ember.Route.extend({
           else {
             jobs.removeObject(job);
             selectedRows.removeObject(row);
-          }
-
+          }*/
+          
+          let row = Ember.$(event.target).parent();
+          row.addClass('bg-info');
+          console.log(row);
         },
 
         assignJob() {

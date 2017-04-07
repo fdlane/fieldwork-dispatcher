@@ -12,9 +12,26 @@
 			{{/each}}
 		{{/workers-table}}
 
-		{{#jobs-table assign="assignJob" unassign="unassignJob" cancel="cancelJob" disableAssign=disableAssign}}
+		<!--/*{{#jobs-table assign="assignJob" unassign="unassignJob" cancel="cancelJob" disableAssign=disableAssign}}
 			{{#each model.jobs as |job|}}
 				{{job-row job=job action="selectJob"}}
-			{{/each}} {{/jobs-table}}
+			{{/each}} {{/jobs-table}}*/-->
+			{{#jobs-table assign="assignJob" unassign="unassignJob" cancel="cancelJob" disableAssign=disableAssign}}
+				{{models-table
+					data=model.jobs
+					columns=columns
+					useNumericPagination=true
+					showColumnsDropdown=false
+					filteringIgnoreCase=true
+					showGlobalFilter=false
+					displayDataChangedAction="selectJob"
+					sendDisplayDataChangedAction=true
+					customClasses=classes
+				}}
+			{{/jobs-table}}
+	</div>
+
+	<div class="row">
+
 	</div>
 </div>
