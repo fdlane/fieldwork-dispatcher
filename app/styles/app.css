@@ -25,6 +25,10 @@ over-ride "Weak" message, show font in dark grey
 
 	}
 
+  tr.selected-row {
+    background-color: #d9edf7;
+  }
+
 body {
 	background: #CCC;
     -webkit-background-size: cover;

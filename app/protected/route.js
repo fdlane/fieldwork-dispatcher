@@ -31,12 +31,12 @@ export default Ember.Route.extend({
           this.controller.set('disableAssign', false);
         },
 
-        selectJob() {
-          /*debugger
+        selectJob(row) {
+          const applicationController = this.controllerFor('application');
           let jobs = this.controllerFor('application').get('jobs');
           let selectedRows = this.controllerFor('application').get('selectedRows');
 
-          if(selected) {
+          /*if(selected) {
             jobs.pushObject(job);
             selectedRows.pushObject(row);
           }
@@ -44,32 +44,43 @@ export default Ember.Route.extend({
             jobs.removeObject(job);
             selectedRows.removeObject(row);
           }*/
-          
-          let row = Ember.$(event.target).parent();
-          row.addClass('bg-info');
+          applicationController.set('tableState', row);
+        
           console.log(row);
+          console.log(row.selectedItems);
+
         },
 
         assignJob() {
 
           const applicationController = this.controllerFor('application');
-          let selectedWorker = applicationController.get('selectedWorker');
-          let jobs = applicationController.get('jobs');
+          // let selectedWorker = applicationController.get('selectedWorker');
+          // let jobs = applicationController.get('jobs');
           let store = this.store;
+          //
+          // jobs.forEach(function(job) {
+          //   store.findRecord('job', job.get('id')).then(function(job) {
+          //
+          //     job.set('assignedTo', selectedWorker);
+          //     job.set('status', 'Acknowledged');
+          //
+          //     job.save();
+          //
+          //   });
+          // });
+          //
+          // applicationController.set('jobs', []);
+          // this.send('deselectRows');
 
-          jobs.forEach(function(job) {
-            store.findRecord('job', job.get('id')).then(function(job) {
+          let table = applicationController.get('tableState');
+          table.selectedItems.getEach('id').forEach(function(id) {
 
-              job.set('assignedTo', selectedWorker);
-              job.set('status', 'Acknowledged');
-
-              job.save();
-
+              console.log(id);
+              store.findRecord('job', id).then(function(job) {
+                job.set('assignedTo', 'maudevolk');
+                job.set('status', 'Acknowledged');
+              });
             });
-          });
-
-          applicationController.set('jobs', []);
-          this.send('deselectRows');
 
         },
 
