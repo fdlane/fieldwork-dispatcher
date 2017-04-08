@@ -6,10 +6,25 @@
 	</div>
 
 	<div class="row">
-		{{#workers-table}}
+		<!--/*{{#workers-table}}
 			{{#each model.workers as |worker|}}
 				{{worker-row worker=worker action="selectWorker"}}
 			{{/each}}
+		{{/workers-table}}*/-->
+
+		{{#workers-table}}
+			{{models-table
+				data=model.workers
+				columns=workerColumns
+				useNumericPagination=true
+				showColumnsDropdown=false
+				filteringIgnoreCase=true
+				showGlobalFilter=false
+				displayDataChangedAction="selectWorker"
+				sendDisplayDataChangedAction=true
+				customClasses=workerClasses
+				useFilteringByColumns=false
+			}}
 		{{/workers-table}}
 
 		<!--/*{{#jobs-table assign="assignJob" unassign="unassignJob" cancel="cancelJob" disableAssign=disableAssign}}
@@ -19,14 +34,14 @@
 			{{#jobs-table assign="assignJob" unassign="unassignJob" cancel="cancelJob" disableAssign=disableAssign}}
 				{{models-table
 					data=model.jobs
-					columns=columns
+					columns=jobColumns
 					useNumericPagination=true
 					showColumnsDropdown=false
 					filteringIgnoreCase=true
 					showGlobalFilter=false
 					displayDataChangedAction="selectJob"
 					sendDisplayDataChangedAction=true
-					customClasses=classes
+					customClasses=jobClasses
 					multipleSelect=true
 				}}
 			{{/jobs-table}}

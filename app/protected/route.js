@@ -26,112 +26,86 @@ export default Ember.Route.extend({
 
         },
 
-        selectWorker(username) {
-          this.controllerFor('application').set('selectedWorker', username);
-          this.controller.set('disableAssign', false);
-        },
-
-        selectJob(row) {
-          const applicationController = this.controllerFor('application');
-          let jobs = this.controllerFor('application').get('jobs');
-          let selectedRows = this.controllerFor('application').get('selectedRows');
-
-          /*if(selected) {
-            jobs.pushObject(job);
-            selectedRows.pushObject(row);
+        selectWorker(tableState) {
+          if(tableState.selectedItems.length > 0) {
+            let username = tableState.selectedItems.getEach('username').objectAt(0);
+            this.controllerFor('application').set('selectedWorker', username);
+            this.controller.set('disableAssign', false);
           }
           else {
-            jobs.removeObject(job);
-            selectedRows.removeObject(row);
-          }*/
-          applicationController.set('tableState', row);
-        
-          console.log(row);
-          console.log(row.selectedItems);
+            this.controller.set('disableAssign', true);
+          }
+
+          console.log(tableState);
+        },
+
+        selectJob(tableState) {
+          const applicationController = this.controllerFor('application');
+
+          applicationController.set('table', tableState);
+
+
+          console.log(tableState);
+          console.log(tableState.selectedItems);
 
         },
 
         assignJob() {
 
           const applicationController = this.controllerFor('application');
-          // let selectedWorker = applicationController.get('selectedWorker');
-          // let jobs = applicationController.get('jobs');
           let store = this.store;
-          //
-          // jobs.forEach(function(job) {
-          //   store.findRecord('job', job.get('id')).then(function(job) {
-          //
-          //     job.set('assignedTo', selectedWorker);
-          //     job.set('status', 'Acknowledged');
-          //
-          //     job.save();
-          //
-          //   });
-          // });
-          //
-          // applicationController.set('jobs', []);
-          // this.send('deselectRows');
+          let table = applicationController.get('table');
+          let selectedWorker = applicationController.get('selectedWorker');
 
-          let table = applicationController.get('tableState');
           table.selectedItems.getEach('id').forEach(function(id) {
 
               console.log(id);
               store.findRecord('job', id).then(function(job) {
-                job.set('assignedTo', 'maudevolk');
+                job.set('assignedTo', selectedWorker);
                 job.set('status', 'Acknowledged');
+                job.save();
               });
             });
+
+            table.selectedItems.clear();
 
         },
 
         unassignJob() {
 
           const applicationController = this.controllerFor('application');
-          let jobs = applicationController.get('jobs');
           let store = this.store;
+          let table = applicationController.get('table');
 
-          jobs.forEach(function(job) {
-            store.findRecord('job', job.get('id')).then(function(job) {
-
+          table.selectedItems.getEach('id').forEach(function(id) {
+            store.findRecord('job', id).then(function(job) {
               job.set('assignedTo', 'UNASSIGNED');
               job.set('status', 'Pending');
-
               job.save();
-
             });
           });
 
-          applicationController.set('jobs', []);
-          this.send('deselectRows');
+          table.selectedItems.clear();
 
         },
 
         cancelJob() {
 
           const applicationController = this.controllerFor('application');
-          let jobs = applicationController.get('jobs');
           let store = this.store;
+          let table = applicationController.get('table');
 
-          jobs.forEach(function(job) {
-            store.findRecord('job', job.get('id')).then(function(job) {
-
+          table.selectedItems.getEach('id').forEach(function(id) {
+            store.findRecord('job', id).then(function(job) {
               job.set('isActive', false);
 
               job.save();
-
             });
           });
 
-          applicationController.set('jobs', []);
-          this.send('deselectRows');
+          table.selectedItems.clear();
 
         },
-
-        deselectRows() {
-          this.controllerFor('application').selectedRows.forEach(function(row) {
-            row.removeClass('bg-info');
-          });
-        }
     }
 
 });
