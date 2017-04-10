@@ -15,7 +15,6 @@ export default Ember.Component.extend({
     {
       "propertyName": "location",
       "title": "Location",
-      "disableSorting": true,
     },
 
     {
