@@ -34,17 +34,7 @@ export default Ember.Component.extend({
   actions: {
 
     selectWorker(tableState) {
-      if(tableState.selectedItems.length > 0) {
-        let username = tableState.selectedItems.getEach('username').objectAt(0);
-        this.set('workerService.selectedWorker', username);
-      }
-
-      else {
-        this.set('workerService.selectWorker', null);
-      }
-
-      console.log(tableState);
-    },
-
+      this.get('workerService').selectWorker(tableState);
+    }
   }
 });
