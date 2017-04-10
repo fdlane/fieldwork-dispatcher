@@ -7,48 +7,24 @@
                     <h3 class="panel-title">Jobs</h3>
                 </div>
                 <div class="col col-sm-6 col-md-6 col-lg-6 text-right">
-                    <button type="button" class="btn btn-primary btn-sm" disabled={{if disableAssign true false}} {{action "assign"}}>Assign</button>
-                    <button type="button" class="btn btn-primary btn-sm" {{action "unassign"}}>Unassign</button>
-                    <button type="button" class="btn btn-primary btn-sm" {{action "cancel"}}>Cancel</button>
+                    <button type="button" class="btn btn-primary btn-sm" disabled={{if jobService.canAssignJob false true}} {{action "assign"}}>Assign</button>
+                    <button type="button" class="btn btn-primary btn-sm" disabled={{if jobService.canUnassignJob false true}} {{action "unassign"}}>Unassign</button>
+                    <button type="button" class="btn btn-primary btn-sm" disabled={{if jobService.canCancelJob false true}} {{action "cancel"}}>Cancel</button>
                 </div>
             </div>
         </div>
-        <!--<div class="panel-body table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            Assigned To
-                            <i class="fa fa-caret-up"></i>
-                        </th>
-
-                        <th>Location</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>-->
-                    {{yield}}
-                <!--</tbody>
-            </table>
-        </div>
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col col-sm-4 col-md-4 col-lg-4">Page 1 of 5
-                </div>
-                <div class="col col-sm-8 col-md-8 col-lg-8">
-                    <ul class="pagination hidden-xs pull-right">
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                    </ul>
-                    <ul class="pagination visible-xs pull-right">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>-->
+          {{models-table
+            data=jobService.jobs
+            columns=columns
+            useNumericPagination=true
+            showColumnsDropdown=false
+            filteringIgnoreCase=true
+            showGlobalFilter=false
+            displayDataChangedAction="selectJob"
+            sendDisplayDataChangedAction=true
+            customClasses=tableClasses
+            multipleSelect=true
+            useFilteringByColumns=false
+          }}
     </div>
 </div>

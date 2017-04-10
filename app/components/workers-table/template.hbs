@@ -9,23 +9,17 @@
 
             </div>
         </div>
-        <!--<div class="panel-body table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            Name
-                            <i class="fa fa-caret-up"></i>
-                        </th>
-
-                        <th>Available</th>
-                        <th>Job Count</th>
-                    </tr>
-                </thead>
-                <tbody>-->
-                    {{yield}}
-                <!--</tbody>
-            </table>
-        </div>-->
+          {{models-table
+    				data=workerService.workers
+    				columns=columns
+    				useNumericPagination=true
+    				showColumnsDropdown=false
+    				filteringIgnoreCase=true
+    				showGlobalFilter=false
+    				displayDataChangedAction="selectWorker"
+    				sendDisplayDataChangedAction=true
+    				customClasses=tableClasses
+    				useFilteringByColumns=false
+    			}}
     </div>
 </div>
