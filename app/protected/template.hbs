@@ -6,45 +6,10 @@
 	</div>
 
 	<div class="row">
-		<!--/*{{#workers-table}}
-			{{#each model.workers as |worker|}}
-				{{worker-row worker=worker action="selectWorker"}}
-			{{/each}}
-		{{/workers-table}}*/-->
 
-		{{#workers-table}}
-			{{models-table
-				data=model.workers
-				columns=workerColumns
-				useNumericPagination=true
-				showColumnsDropdown=false
-				filteringIgnoreCase=true
-				showGlobalFilter=false
-				displayDataChangedAction="selectWorker"
-				sendDisplayDataChangedAction=true
-				customClasses=workerClasses
-				useFilteringByColumns=false
-			}}
-		{{/workers-table}}
+		{{workers-table}}
 
-		<!--/*{{#jobs-table assign="assignJob" unassign="unassignJob" cancel="cancelJob" disableAssign=disableAssign}}
-			{{#each model.jobs as |job|}}
-				{{job-row job=job action="selectJob"}}
-			{{/each}} {{/jobs-table}}*/-->
-			{{#jobs-table assign="assignJob" unassign="unassignJob" cancel="cancelJob" disableAssign=disableAssign}}
-				{{models-table
-					data=model.jobs
-					columns=jobColumns
-					useNumericPagination=true
-					showColumnsDropdown=false
-					filteringIgnoreCase=true
-					showGlobalFilter=false
-					displayDataChangedAction="selectJob"
-					sendDisplayDataChangedAction=true
-					customClasses=jobClasses
-					multipleSelect=true
-				}}
-			{{/jobs-table}}
+		{{jobs-table}}
 	</div>
 
 	<div class="row">
