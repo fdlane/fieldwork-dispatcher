@@ -36,10 +36,6 @@ export default Ember.Service.extend({
 
       this.set('tableState', tableState);
 
-
-    console.log(tableState);
-    console.log(tableState.selectedItems);
-
   },
 
   assignJob() {
