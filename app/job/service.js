@@ -14,8 +14,8 @@ export default Ember.Service.extend({
 
   selectJob(tableState) {
 
-    this.set('tableState', tableState);
-
+      this.set('tableState', tableState);
+    
 
     console.log(tableState);
     console.log(tableState.selectedItems);
@@ -24,11 +24,11 @@ export default Ember.Service.extend({
 
   assignJob() {
 
-    let selectedWorker = this.get('workerService.selectedWorker');
+    let selectedWorker = this.get('workerService.selectedWorkers.firstObject');
 
     this.get('selectedJobs').forEach(function(job) {
 
-      job.set('assignedTo', selectedWorker);
+      job.set('assignedTo', selectedWorker.get('username'));
       job.set('status', 'Acknowledged');
       job.save();
 
