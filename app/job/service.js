@@ -12,13 +12,29 @@ export default Ember.Service.extend({
   canUnassignJob: Ember.computed.alias('hasSelectedJob'),
   canCancelJob: Ember.computed.alias('hasSelectedJob'),
 
+  filterValue: "",
+
+  filteredJobs: Ember.computed('jobs.[]', 'filterValue', function(){
+    let jobs = this.get('jobs');
+    let filterValue = this.get('filterValue').toLowerCase();
+    return jobs.filter(job => {
+      if(job.get('location').toLowerCase().indexOf(filterValue) !== -1){
+        return true;
+      }
+      if(job.get('assignedTo').toLowerCase().indexOf(filterValue) !== -1){
+        return true;
+      }
+      if(job.get('status').toLowerCase().indexOf(filterValue) !== -1){
+        return true;
+      }
+
+      return false;
+    });
+  }),
+
   selectJob(tableState) {
 
       this.set('tableState', tableState);
-    
-
-    console.log(tableState);
-    console.log(tableState.selectedItems);
 
   },
 
