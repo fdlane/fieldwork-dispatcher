@@ -1,49 +1,57 @@
 <div class="container text-center">
 
-  <div class="row" >
-    <div class="col-md-4"></div>
+	<div class="row">
+		<div class="col-md-4"></div>
 
-    <div class="col-md-4">
-      <section class="login-form">
-        <form method="post" action="#" role="login">
-          <img src="{{rootURL}}assets/images/kub.png" height="100" width="100" class="img-responsive" alt="" />
+		<div class="col-md-4">
+			<section class="login-form">
+				<form method="post" action="#" role="login">
+					<img src="{{rootURL}}assets/images/kub.png" height="100" width="100" class="img-responsive" alt="" />
 
-          <!-- User input error message -->
-          {{#if displayError}}
-             <div class="alert alert-danger">
-                <strong>Error!</strong>
-                <p>Email/password is incorrect.</p>
-             </div>
-            {{/if}}
-           <!--<div class="alert alert-danger">
+					<!-- User input error message -->
+					{{#if displayError}}
+						<div class="alert alert-danger">
+							<strong>Error!</strong>
+							<p>Email/password is incorrect.</p>
+						</div>
+					{{/if}}
+					<!--<div class="alert alert-danger">
               <strong>Error!</strong>
               <p>Provided email doesn't exist in our database. Please, contact admistrator.</p>
            </div>-->
 
-          {{input type="email" value = userEmail placeholder="Email" required=true class="form-control input-lg"  }}
+					{{#if loading}}
+						<div class="spinner">
+								<div class="bounce1"></div>
+								<div class="bounce2"></div>
+								<div class="bounce3"></div>
+						</div>
+					{{else}}
 
-          {{input type="password" value = userPassword class="form-control input-lg"  placeholder="Password" required=true }}
+						{{input type="email" value = userEmail placeholder="Email" required=true class="form-control input-lg"  }}
+						{{input type="password" value = userPassword class="form-control input-lg"  placeholder="Password" required=true }}
 
-          <div class="pwstrength_viewport_progress"></div>
+						<div class="pwstrength_viewport_progress"></div>
 
-          <button {{action 'login'}} type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
-          <div>
-            <a href="#" {{action 'forgotPassword'}}>Forgot password?</a>
-          </div>
-          <br>
-          <div>
-            <a href="#">Contact administrator</a>
-          </div>
-        </form>
+						<button {{action 'login'}} type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+						<div>
+							<a href="#" {{action 'forgotPassword'}}>Forgot password?</a>
+						</div>
+						<br>
+						<div>
+							<a href="#">Contact administrator</a>
+						</div>
+					{{/if}}
+				</form>
 
-        <div class="form-links">
-          <a href="http://fdlane.com/fieldwork-site/" target="_blank">Project Site</a><br>
+				<div class="form-links">
+					<a href="http://fdlane.com/fieldwork-site/" target="_blank">Project Site</a>
           <a href="https://github.com/fdlane/fieldwork-worker" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
-        </div>
-      </section>
-      </div>
+				</div>
+			</section>
+		</div>
 
-      <div class="col-md-4"></div>
+		<div class="col-md-4"></div>
 
-  </div>
+	</div>
 </div>
