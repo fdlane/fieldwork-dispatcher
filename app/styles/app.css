@@ -37,6 +37,10 @@ body {
     background-size: cover;
 }
 
+.centerLink {
+    margin: 0 auto;
+}
+
 .login-form {
     margin-top: 60px;
 }
