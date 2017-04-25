@@ -26,7 +26,7 @@ over-ride "Weak" message, show font in dark grey
         float: none;
     }
     .navbar-nav>li>a {
-        padding: 16px 15px;
+        padding: 5px 15px;
         float: right;
     }
 
@@ -39,7 +39,7 @@ over-ride "Weak" message, show font in dark grey
     }
 
     .img-brand {
-      padding: 16px 15px;
+      padding: 2px 0px;
       float: left;
     }
 }
