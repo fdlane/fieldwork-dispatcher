@@ -24,7 +24,7 @@ export default Ember.Component.extend({
   ],
 
   tableClasses: Ember.Object.create({
-    "table": "table  table-bordered",
+    "table": "table  table-bordered table-condensed",
     "footerSummaryNumericPagination": "col-md-4 col-sm-4 col-xs-4", // Show 1-n of n
     "pageSizeWrapper": "col-md-3 col-sm-3 col-xs-3", // Page dropdown
     "paginationWrapperNumeric": "col-md-5 col-sm-5 col-xs-5", // Page

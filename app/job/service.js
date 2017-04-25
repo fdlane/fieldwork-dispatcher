@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
 
+  store: Ember.inject.service(),
+
   workerService: Ember.inject.service('worker'),
 
   jobs: [],
@@ -13,6 +15,8 @@ export default Ember.Service.extend({
   canCancelJob: Ember.computed.alias('hasSelectedJob'),
 
   filterValue: "",
+
+  jobCounts: Ember.computed.filterBy('jobs', 'assignedTo', 'amberolive'),
 
   filteredJobs: Ember.computed('jobs.[]', 'filterValue', function(){
     let jobs = this.get('jobs');
@@ -31,6 +35,17 @@ export default Ember.Service.extend({
       return false;
     });
   }),
+
+  setJobCounts() {
+    let jobs = this.get('jobs');
+    let workers = this.get('workerService.workers').toArray();
+    let jobCount = 0;
+    workers.forEach(function(worker) {
+      jobCount = jobs.filterBy('assignedTo', worker.get('username')).length;
+      worker.set('jobCount', jobCount);
+      worker.save();
+    });
+  },
 
   selectJob(tableState) {
 
@@ -51,7 +66,7 @@ export default Ember.Service.extend({
     });
 
     this.get('selectedJobs').clear();
-
+    this.setJobCounts();
   },
 
   unassignJob() {
@@ -65,6 +80,7 @@ export default Ember.Service.extend({
     });
 
     this.get('selectedJobs').clear();
+    this.setJobCounts();
 
   },
 
@@ -78,6 +94,7 @@ export default Ember.Service.extend({
 
     });
     this.get('selectedJobs').clear();
+    this.setJobCounts();
 
   },
 

@@ -24,7 +24,7 @@ export default Ember.Component.extend({
   ],
 
   tableClasses: Ember.Object.create({
-    "table": "table  table-bordered",
+    "table": "table  table-bordered table-condensed",
 
   }),
 
