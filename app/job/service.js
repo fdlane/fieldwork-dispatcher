@@ -44,7 +44,7 @@ export default Ember.Service.extend({
       jobCount = jobs.filterBy('assignedTo', worker.get('username')).length;
       worker.set('jobCount', jobCount);
       worker.save();
-    })
+    });
   },
 
   selectJob(tableState) {
@@ -66,7 +66,6 @@ export default Ember.Service.extend({
     });
 
     this.get('selectedJobs').clear();
-    let jobs = this.get('jobs');
     this.setJobCounts();
   },
 
