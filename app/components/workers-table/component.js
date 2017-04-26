@@ -15,6 +15,8 @@ export default Ember.Component.extend({
     {
       "propertyName": "available",
       "title": "Available",
+      "component": "is-available-cell",
+      "className": "text-center",
     },
 
     {
