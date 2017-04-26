@@ -45,6 +45,7 @@ export default Ember.Service.extend({
       let jobCountAssigned = jobs.filterBy('assignedTo', worker.get('username')).length;
       let jobCountCompleted = jobs.filterBy('status', 'Completed').length;
       jobCount = jobCountAssigned - jobCountCompleted;
+
       if(jobCount < 0){
         jobCount = 0;
       }
