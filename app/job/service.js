@@ -41,9 +41,11 @@ export default Ember.Service.extend({
     let workers = this.get('workerService.workers').toArray();
     let jobCount = 0;
     workers.forEach(function(worker) {
+
       let jobCountAssigned = jobs.filterBy('assignedTo', worker.get('username')).length;
       let jobCountCompleted = jobs.filterBy('status', 'Completed').length;
       jobCount = jobCountAssigned - jobCountCompleted;
+
       worker.set('jobCount', jobCount);
       worker.save();
     });
